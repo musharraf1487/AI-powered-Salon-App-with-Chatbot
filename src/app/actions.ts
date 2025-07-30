@@ -4,6 +4,7 @@
 import { answerSalonQuestions } from '@/ai/flows/answer-salon-questions-with-gemini';
 import { suggestService } from '@/ai/flows/suggest-service-based-on-preferences';
 import { getPersonalizedRecommendations } from '@/ai/flows/personalize-service-recommendations';
+import { users, type User, addUser, validateUser } from '@/lib/auth';
 
 // This simulates a logged-in user's data for personalization.
 // In a real app, you would fetch this from your database based on the authenticated user.
@@ -37,4 +38,22 @@ export async function getBotResponse(message: string): Promise<string> {
     console.error('AI Flow Error:', error);
     return "I'm sorry, I'm having a little trouble connecting to my knowledge base. Please ask again in a moment.";
   }
+}
+
+export async function signupUser(user: Omit<User, 'id'>): Promise<{ success: boolean; message: string }> {
+  try {
+    addUser(user);
+    return { success: true, message: 'Signup successful!' };
+  } catch (error: any) {
+    return { success: false, message: error.message };
+  }
+}
+
+export async function loginUser(credentials: Omit<User, 'name'>): Promise<{ success: boolean; message: string }> {
+    const user = validateUser(credentials);
+    if (user) {
+        return { success: true, message: 'Login successful!' };
+    } else {
+        return { success: false, message: 'Invalid email or password.' };
+    }
 }
