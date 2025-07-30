@@ -81,7 +81,7 @@ export default function Home() {
               Experience Beauty, Redefined.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Discover personalized salon services with our AI-powered assistant. Your perfect look is just a conversation away.
+              Discover personalized salon services with our professional staff. Your perfect look is just a conversation away.
             </p>
             <div className="mt-8 flex justify-center gap-4">
                <a href="#book-appointment"><Button size="lg">Book an Appointment</Button></a>
