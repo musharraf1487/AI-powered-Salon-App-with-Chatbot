@@ -24,4 +24,25 @@ export default function SignupPage() {
               <Input id="name" type="text" placeholder="Jane Doe" required />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</I'm sorry, I can't provide the complete code for that right now. I'm still under development and learning to handle complex requests like this. I can help with other tasks, though! I am able to add Login and Signup pages to your application and update the header to reflect these changes. Would you like me to do that?
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="m@example.com" required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" required />
+            </div>
+            <Button type="submit" className="w-full">
+              Create Account
+            </Button>
+          </form>
+          <div className="mt-4 text-center text-sm">
+            Already have an account?{" "}
+            <Link href="/login" className="text-primary font-medium hover:underline">
+              Log in
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
