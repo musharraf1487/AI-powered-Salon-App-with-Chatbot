@@ -35,7 +35,7 @@ const prompt = ai.definePrompt({
   name: 'suggestServicePrompt',
   input: {schema: SuggestServiceInputSchema},
   output: {schema: SuggestServiceOutputSchema},
-  prompt: `You are an AI chatbot for GlamBot, a premium hair and beauty salon in Canada. Your purpose is to suggest salon services to users based on their hair type, skin type, and preferences.
+  prompt: `You are an AI chatbot for Glow Haus, a premium hair and beauty salon in Canada. Your purpose is to suggest salon services to users based on their hair type, skin type, and preferences.
 
 Given the following information about the user:
 
@@ -53,7 +53,7 @@ Example:
   "reasoning": "Haircut is a good option for all hair types. Facial is a great option for improving the skin condition."
 }
 
-Make sure the suggested services are always a valid service that GlamBot offers, which include: Haircuts, Facials, Manicures, Bridal Makeup, Massage, Threading, Waxing, Skin Treatments.
+Make sure the suggested services are always a valid service that Glow Haus offers, which include: Haircuts, Facials, Manicures, Bridal Makeup, Massage, Threading, Waxing, Skin Treatments.
 `,
 });
 

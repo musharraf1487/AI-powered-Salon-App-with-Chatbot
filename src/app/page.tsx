@@ -57,7 +57,7 @@ export default function Home() {
         <div className="container flex h-16 items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <GlamBotLogo className="size-8 text-primary" />
-            <span className="font-headline text-2xl font-bold text-foreground">GlamBot</span>
+            <span className="font-headline text-2xl font-bold text-foreground">Glow Haus</span>
           </a>
           <a href="#book-appointment">
             <Button>Book Now</Button>
@@ -135,7 +135,7 @@ export default function Home() {
             <div>
               <a href="#" className="flex items-center gap-2">
                 <GlamBotLogo className="size-8 text-primary" />
-                <span className="font-headline text-2xl font-bold text-foreground">GlamBot</span>
+                <span className="font-headline text-2xl font-bold text-foreground">Glow Haus</span>
               </a>
               <p className="mt-4 text-muted-foreground">The future of salon experiences.</p>
               <div className="mt-4 flex gap-4">
@@ -156,12 +156,12 @@ export default function Home() {
                <ul className="mt-4 space-y-2 text-muted-foreground">
                 <li>123 Beauty Lane, Toronto, ON</li>
                 <li>(416) 123-4567</li>
-                <li>contact@glambot.com</li>
+                <li>contact@glowhaus.com</li>
               </ul>
             </div>
           </div>
           <Separator className="my-8" />
-          <p className="text-center text-sm text-muted-foreground">© {new Date().getFullYear()} GlamBot. All rights reserved.</p>
+          <p className="text-center text-sm text-muted-foreground">© {new Date().getFullYear()} Glow Haus. All rights reserved.</p>
         </div>
       </footer>
       

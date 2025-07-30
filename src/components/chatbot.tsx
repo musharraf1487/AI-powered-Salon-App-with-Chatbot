@@ -20,7 +20,7 @@ export default function Chatbot() {
     {
       id: 0,
       role: 'bot',
-      content: "Hello! I'm GlamBot, your personal salon assistant. How can I help you today? You can ask about services, book an appointment, or ask for recommendations.",
+      content: "Hello! I'm Glow Haus, your personal salon assistant. How can I help you today? You can ask about services, book an appointment, or ask for recommendations.",
     },
   ]);
   const [input, setInput] = useState('');
@@ -81,7 +81,7 @@ export default function Chatbot() {
       </SheetTrigger>
       <SheetContent className="flex h-full flex-col p-0">
         <SheetHeader className="p-4 border-b">
-          <SheetTitle className="font-headline text-center">GlamBot Assistant</SheetTitle>
+          <SheetTitle className="font-headline text-center">Glow Haus Assistant</SheetTitle>
         </SheetHeader>
         <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
           <div className="space-y-6">
