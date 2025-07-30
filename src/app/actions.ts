@@ -49,7 +49,7 @@ export async function signupUser(user: Omit<User, 'id'>): Promise<{ success: boo
   }
 }
 
-export async function loginUser(credentials: Omit<User, 'name'>): Promise<{ success: boolean; message: string }> {
+export async function loginUser(credentials: Omit<User, 'id' | 'name'>): Promise<{ success: boolean; message: string }> {
     const user = validateUser(credentials);
     if (user) {
         return { success: true, message: 'Login successful!' };
