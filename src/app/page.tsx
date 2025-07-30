@@ -6,6 +6,7 @@ import { AppointmentScheduler } from "@/components/appointment-scheduler";
 import Chatbot from "@/components/chatbot";
 import { Scissors, Smile, Hand, Heart, Wind, Eye, Droplet, Sun, Facebook, Twitter, Instagram } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -55,13 +56,18 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
+          <Link href="#" className="flex items-center gap-2">
             <GlamBotLogo className="size-8 text-primary" />
             <span className="font-headline text-2xl font-bold text-foreground">Glow Haus</span>
-          </a>
-          <a href="#book-appointment">
-            <Button>Book Now</Button>
-          </a>
+          </Link>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="ghost">
+              <Link href="/login">Login</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/signup">Sign Up</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -168,4 +174,3 @@ export default function Home() {
       <Chatbot />
     </div>
   );
-}
