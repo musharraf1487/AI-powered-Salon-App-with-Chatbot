@@ -42,6 +42,9 @@ export async function getBotResponse(message: string): Promise<string> {
 
 export async function signupUser(user: Omit<User, 'id'>): Promise<{ success: boolean; message: string }> {
   try {
+    if (!user.password) {
+      return { success: false, message: 'Password is required.' };
+    }
     addUser(user);
     return { success: true, message: 'Signup successful!' };
   } catch (error: any) {
