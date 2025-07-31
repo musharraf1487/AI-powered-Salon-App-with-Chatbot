@@ -25,12 +25,17 @@ export default function LoginPage() {
 
     const result = await loginUser({ email, password });
 
-    if (result.success) {
+    if (result.success && result.user) {
       toast({
         title: 'Login Successful',
         description: "Welcome back!",
       });
+      // Store user info in localStorage
+      localStorage.setItem('user', JSON.stringify(result.user));
       router.push('/');
+      // Trigger a custom event to notify the header
+      window.dispatchEvent(new Event('authChange'));
+
     } else {
       toast({
         title: 'Login Failed',

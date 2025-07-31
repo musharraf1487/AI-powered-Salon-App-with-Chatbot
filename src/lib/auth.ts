@@ -31,7 +31,17 @@ export function addUser(user: Omit<User, 'id'>): User {
  * Validates user credentials.
  * In a real app, this would compare a hashed password.
  */
-export function validateUser(credentials: Omit<User, 'name' | 'id'>): User | undefined {
-  const user = users.find(u => u.email === credentials.email && u.password === credentials.password);
-  return user;
+export function validateUser(email?: string, password?: string): User | undefined {
+    if (!email || !password) {
+        return undefined;
+    }
+    const user = users.find(u => u.email === email && u.password === password);
+    return user;
+}
+
+/**
+ * Finds a user by email.
+ */
+export function findUserByEmail(email: string): User | undefined {
+  return users.find(u => u.email === email);
 }

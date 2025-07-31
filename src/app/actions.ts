@@ -4,7 +4,7 @@
 import { answerSalonQuestions } from '@/ai/flows/answer-salon-questions-with-gemini';
 import { suggestService } from '@/ai/flows/suggest-service-based-on-preferences';
 import { getPersonalizedRecommendations } from '@/ai/flows/personalize-service-recommendations';
-import { users, type User, addUser, validateUser } from '@/lib/auth';
+import { users, type User, addUser, validateUser, findUserByEmail } from '@/lib/auth';
 
 // This simulates a logged-in user's data for personalization.
 // In a real app, you would fetch this from your database based on the authenticated user.
@@ -52,10 +52,10 @@ export async function signupUser(user: Omit<User, 'id'>): Promise<{ success: boo
   }
 }
 
-export async function loginUser(credentials: Omit<User, 'id' | 'name'>): Promise<{ success: boolean; message: string }> {
-    const user = validateUser(credentials);
+export async function loginUser(credentials: Omit<User, 'id' | 'name'>): Promise<{ success: boolean; message: string; user?: {name: string, email: string} }> {
+    const user = validateUser(credentials.email, credentials.password);
     if (user) {
-        return { success: true, message: 'Login successful!' };
+        return { success: true, message: 'Login successful!', user: {name: user.name, email: user.email} };
     } else {
         return { success: false, message: 'Invalid email or password.' };
     }

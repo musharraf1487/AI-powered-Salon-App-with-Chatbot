@@ -1,12 +1,13 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { GlamBotLogo } from "@/components/icons";
 import { AppointmentScheduler } from "@/components/appointment-scheduler";
 import Chatbot from "@/components/chatbot";
 import { Scissors, Smile, Hand, Heart, Wind, Eye, Droplet, Sun, Facebook, Twitter, Instagram } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { AppHeader } from "@/components/header";
+import { GlamBotLogo } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+
 
 const services = [
   {
@@ -54,22 +55,7 @@ const services = [
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <Link href="#" className="flex items-center gap-2">
-            <GlamBotLogo className="size-8 text-primary" />
-            <span className="font-headline text-2xl font-bold text-foreground">Glow Haus</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Button asChild variant="ghost">
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <AppHeader />
 
       <main className="flex-1">
         <section id="hero" className="relative w-full py-20 md:py-32 lg:py-40">
@@ -174,3 +160,4 @@ export default function Home() {
       <Chatbot />
     </div>
   );
+}
