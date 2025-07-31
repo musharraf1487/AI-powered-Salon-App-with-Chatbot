@@ -1,3 +1,4 @@
+
 // This is a simulated user database.
 // In a real application, you would use a proper database like Firestore.
 
