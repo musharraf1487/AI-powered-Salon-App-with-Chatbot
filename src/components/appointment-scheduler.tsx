@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Calendar } from '@/components/ui/calendar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ToastAction } from '@/components/ui/toast';
-
 import {
   Select,
   SelectContent,
@@ -24,9 +24,14 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-
 import { addDays, format } from 'date-fns';
-import { PartyPopper } from 'lucide-react';
+import { PartyPopper, User } from 'lucide-react';
+import Link from 'next/link';
+
+interface AuthenticatedUser {
+  name: string;
+  email: string;
+}
 
 const services = ["Haircut", "Facial", "Manicure", "Bridal Makeup", "Massage", "Threading", "Waxing", "Skin Treatments"];
 const stylists = ["Alex", "Jordan", "Taylor", "Casey"];
@@ -38,11 +43,20 @@ export function AppointmentScheduler() {
   const [stylist, setStylist] = useState('');
   const [time, setTime] = useState('');
   const [isConfirming, setIsConfirming] = useState(false);
+  const [user, setUser] = useState<AuthenticatedUser | null>(null);
   const { toast } = useToast();
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const isBookingReady = useMemo(() => {
-    return date && service && stylist && time;
-  }, [date, service, stylist, time]);
+    return date && service && stylist && time && user;
+  }, [date, service, stylist, time, user]);
   
   // Effect to reset time if the selected date changes
   useEffect(() => {
@@ -57,7 +71,7 @@ export function AppointmentScheduler() {
   const confirmBooking = () => {
     toast({
       title: "Booking Confirmed!",
-      description: `Your ${service} with ${stylist} is set for ${format(date!, 'PPP')} at ${time}.`,
+      description: `${user?.name}, your ${service} with ${stylist} is set for ${format(date!, 'PPP')} at ${time}.`,
       action: <ToastAction altText="Close"><PartyPopper className="text-primary" /></ToastAction>,
     });
     // Reset form
@@ -67,6 +81,18 @@ export function AppointmentScheduler() {
     setTime('');
     setIsConfirming(false);
   };
+
+  if (!user) {
+    return (
+        <Card className="mt-12 w-full max-w-4xl mx-auto shadow-xl overflow-hidden text-center p-8">
+            <h3 className="font-headline text-2xl font-bold">Please Log In to Book</h3>
+            <p className="text-muted-foreground mt-2 mb-6">You need to be logged in to schedule an appointment.</p>
+            <Button asChild>
+                <Link href="/login">Login or Sign Up</Link>
+            </Button>
+        </Card>
+    );
+  }
 
   return (
     <Card className="mt-12 w-full max-w-4xl mx-auto shadow-xl overflow-hidden">
@@ -130,6 +156,7 @@ export function AppointmentScheduler() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="space-y-2 text-sm">
+            <p><strong>Client:</strong> {user?.name}</p>
             <p><strong>Service:</strong> {service}</p>
             <p><strong>Stylist:</strong> {stylist}</p>
             <p><strong>Date:</strong> {date ? format(date, 'PPP') : ''}</p>
